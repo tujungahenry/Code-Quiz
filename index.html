@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
         <div id="start">Start Quiz!</div>
         <div id="quiz" style="display: none">
             <div id="question"></div>
-            <!-- <div id="qImg"></div> -->
             <div id="choices">
                 <div class="choice" id="A" onclick="checkAnswer('A')"></div>
                 <div class="choice" id="B" onclick="checkAnswer('B')"></div>
@@ -24,8 +23,20 @@
             </div>
             <div id="progress"></div>
         </div>
-        <div id="scoreContainer" style="display: none"></div>
+        <div id="scoreContainer" style="display: none;"></div>
     </div>
+    <br>
+    <fieldset>
+        <legend>Record Highscores</legend>
+        <input id= inpKey type="text" placeholder="enter initials">
+        <input id="inpValue" type="text" placeholder="enter score">
+        <button type="button" id="btnInsert">submit</button>
+    </fieldset>
+    <fieldset>
+        <legend>History</legend>
+        <div id="lsOutput"></div>
+    </fieldset>
+    <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

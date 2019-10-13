@@ -1,8 +1,8 @@
+
 // select all elements
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
-// const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
@@ -11,43 +11,7 @@ const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
-
-// create our questions
-let questions = [
-    {
-        question : "In what section should a title tag be placed?",
-        // imgSrc : "img/html.png",
-        choiceA : "Head",
-        choiceB : "Body",
-        choiceC : "Div",
-        choiceD : "Footer",
-        correct : "A"
-    },{
-        question : "Bootstrap is to Css as Jquery is to....?",
-        // imgSrc : "img/css.png",
-        choiceA : "C++",
-        choiceB : "Javascript",
-        choiceC : "Python",
-        choiceD : "React",
-        correct : "B"
-    },{
-        question : "What does i++ do inside of a for loop?",
-        // imgSrc : "img/js.png",
-        choiceA : "multiply",
-        choiceB : "Adds 1",
-        choiceC : "Get value & adds 1",
-        choiceD : "Divide",
-        correct : "C"
-    },{
-        question : "What does CSS stand for?",
-        // imgSrc : "img/js.png",
-        choiceA : "Clone Style Sheet",
-        choiceB : "Creative Style Sheet",
-        choiceC : "Cascading Style Sheet",
-        choiceD : "Cramped Style System",
-        correct : "C"
-    }
-];
+const submitIt = document.getElementById("submitBtn");
 
 // create some variables
 
@@ -65,7 +29,6 @@ function renderQuestion(){
     let q = questions[runningQuestion];
     
     question.innerHTML = "<p>"+ q.question +"</p>";
-    // qImg.innerHTML = "<img src="+ q.imgSrc +">";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
@@ -150,17 +113,39 @@ function answerIsWrong(){
 // score render
 function scoreRender(){
     scoreDiv.style.display = "block";
+    // submitIt.style.display = "block";
     
     // calculate the amount of question percent answered by the user
     const scorePerCent = Math.round(100 * score/questions.length);
     
-    // choose the image based on the scorePerCent
-    // let img = (scorePerCent >= 80) ? "img/5.png" :
-    //           (scorePerCent >= 60) ? "img/4.png" :
-    //           (scorePerCent >= 40) ? "img/3.png" :
-    //           (scorePerCent >= 20) ? "img/2.png" :
-    //           "img/1.png";
-    
-    // scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<p id= scoreP>"+ scorePerCent +"%</p>";
 }
+
+
+
+
+
+const inpKey = document.getElementById("inpKey");
+const inpValue = document.getElementById("inpValue");
+const btnInsert = document.getElementById("btnInsert");
+const lsOutput = document.getElementById("lsOutput");
+const scorePer = document.getElementById("scoreP");
+
+btnInsert.onclick = function () {
+    const key = inpKey.value;
+    const value = inpValue.value;
+
+    if (key && value) {
+        localStorage.setItem(key, value);
+        location.reload();
+    }
+};
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        console.log("this is the -" + key, value)
+        lsOutput.innerHTML += `${key}: ${value}<br />`;
+
+}
+
