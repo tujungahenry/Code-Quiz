@@ -1,5 +1,4 @@
 
-// select all elements
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
@@ -13,8 +12,7 @@ const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 const submitIt = document.getElementById("submitBtn");
 
-// create some variables
-
+// Variables
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
@@ -24,7 +22,7 @@ const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
 
-// render a question
+// Generate questions
 function renderQuestion(){
     let q = questions[runningQuestion];
     
@@ -37,7 +35,7 @@ function renderQuestion(){
 
 start.addEventListener("click",startQuiz);
 
-// start quiz
+// Start quiz
 function startQuiz(){
     start.style.display = "none";
     renderQuestion();
@@ -47,15 +45,14 @@ function startQuiz(){
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
 
-// render progress
+// Generate progress
 function renderProgress(){
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
 }
 
-// counter render
-
+// Counter
 function renderCounter(){
     if(count <= questionTime){
         counter.innerHTML = count;
@@ -69,7 +66,6 @@ function renderCounter(){
             runningQuestion++;
             renderQuestion();
         }else{
-            // end the quiz and show the score
             clearInterval(TIMER);
             scoreRender();
         }
@@ -110,21 +106,16 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
-// score render
+// Score Generate
 function scoreRender(){
     scoreDiv.style.display = "block";
-    // submitIt.style.display = "block";
-    
-    // calculate the amount of question percent answered by the user
+
     const scorePerCent = Math.round(100 * score/questions.length);
     
     scoreDiv.innerHTML += "<p id= scoreP>"+ scorePerCent +"%</p>";
 }
 
-
-
-
-
+//Local Storage
 const inpKey = document.getElementById("inpKey");
 const inpValue = document.getElementById("inpValue");
 const btnInsert = document.getElementById("btnInsert");
@@ -144,8 +135,10 @@ btnInsert.onclick = function () {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const value = localStorage.getItem(key);
-        console.log("this is the -" + key, value)
         lsOutput.innerHTML += `${key}: ${value}<br />`;
 
 }
 
+btnClear.addEventListener('click', function() {
+    localStorage.clear()
+})
